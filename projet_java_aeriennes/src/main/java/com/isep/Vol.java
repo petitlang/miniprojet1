@@ -10,8 +10,14 @@ public class Vol {
     private Date DateHeureDepart;  // 航班日期出发日期和时间
     private Date DateHeureArrivee; //航班到达时间日期
     private String Etat;           // 飞机状态
-    private String pilote;         // 飞行员
-    private String equipeCabine;   // 机组成员
+    protected String pilote;         // 飞行员
+    protected String equipeCabine;   // 机组成员
+
+    private static final ArrayList<Vol> vols = new ArrayList<Vol>();
+
+    public static ArrayList<Vol> getVols() {
+        return vols;
+    }
 
     // 构造函数
     public Vol(int numeroVol, String Origine, String destination, Date DateHeureDepart, Date DateHeureArrivee, String Etat) {
@@ -23,6 +29,7 @@ public class Vol {
         this.Etat = "Planifié"; // 初始化时未分配飞机
         this.pilote = null;
         this.equipeCabine = null;
+        vols.add(this);
     }
 
     // Getter 和 Setter
@@ -43,6 +50,38 @@ public class Vol {
     }
     public String getEtat() {
         return Etat;
+    }
+
+    public String getPilote() {
+        return pilote;
+    }
+
+    public String getEquipeCabine() {
+        return equipeCabine;
+    }
+
+    public void setNumeroVol(int numeroVol) {
+        this.numeroVol = numeroVol;
+    }
+
+    public void setOrigine(String Origine) {
+        this.Origine = Origine;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public void setDateHeureDepart(Date DateHeureDepart) {
+        this.DateHeureDepart = DateHeureDepart;
+    }
+
+    public void setDateHeureArrivee(Date DateHeureArrivee) {
+        this.DateHeureArrivee = DateHeureArrivee;
+    }
+
+    public void setEtat(String Etat) {
+        this.Etat = Etat;
     }
 
     //Fonctionnalités

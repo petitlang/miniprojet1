@@ -15,7 +15,6 @@ public class Reservation{
         this.statut = statut;
         this.volsReserve = new ArrayList<Vol>();
         this.passager = passager;
-        this.vols = new ArrayList<Vol>();
     }
 
     public int getNumeroReservation() {
@@ -70,7 +69,7 @@ public class Reservation{
     }
     
     public void addVol(int numeroVol){
-        for(Vol vol : vols){
+        for(Vol vol : Vol.getVols()){
             if(vol.getNumeroVol() == numeroVol){
                 volsReserve.add(vol);
             }
