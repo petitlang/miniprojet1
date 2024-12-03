@@ -13,7 +13,7 @@ public class Vol {
     protected String pilote;         // 飞行员
     protected String equipeCabine;   // 机组成员
 
-    private static final ArrayList<Vol> vols = new ArrayList<Vol>();
+    private static ArrayList<Vol> vols = new ArrayList<Vol>();
 
     public static ArrayList<Vol> getVols() {
         return vols;

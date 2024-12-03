@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Pilote extends Employe{
     private String Licence;
     private String heuresDeVols;
-    protected ArrayList<Vol> volsPilote;
+    protected ArrayList<Vol> volsPilote = new ArrayList<Vol>();
 
     public Pilote(String Identifiant, String Nom, String Adresse, String Contact, String NumeroEmploye, String DataEmbauche, String Licence, String heuresDeVols) {
         super(Identifiant, Nom, Adresse, Contact, NumeroEmploye, DataEmbauche);
         this.Licence = Licence;
         this.heuresDeVols = heuresDeVols;
-        this.volsPilote = new ArrayList<Vol>();
+        volsPilote = new ArrayList<Vol>();
     }
 
     public String getLicence() {
@@ -36,7 +36,7 @@ public class Pilote extends Employe{
     }
 
     public void obtenirVol(int numeroVol){
-        for (Vol vol : volsPilote) {
+        for (Vol vol : Vol.getVols()) {
             if (vol.getNumeroVol() == numeroVol) {
                 vol.obtenirVol();
             }
