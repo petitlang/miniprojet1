@@ -1,6 +1,7 @@
+package com.isep;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Vol {
     private int numeroVol;         // 航班编号
@@ -28,7 +29,7 @@ public class Vol {
     public int getNumeroVol() {
         return numeroVol;
     }
-    public int getOrigine() {
+    public String getOrigine() {
         return Origine;
     }
     public String getDestination() {
@@ -41,7 +42,7 @@ public class Vol {
         return DateHeureArrivee;
     }
     public String getEtat() {
-        return etat;
+        return Etat;
     }
 
     //Fonctionnalités
@@ -52,34 +53,35 @@ public class Vol {
     }
 
     public String obtenirVol() {
-        return "Vol ID: " + numeroVol + ", origine: " + origine + ", destination: " + destination +
-                ", dateHeureDepart: " + dateHeureDepart + ", dateHeureArrivee: " + dateHeureArrivee +
-                ", etat: " + etat + "pilote: " + piloteInfo +
-                ", equipeCabine: " + equipeCabineInfo;}
+        String piloteInfo;
+        if (pilote != null) {
+            piloteInfo = pilote;
+        } else {
+            piloteInfo = "non attribué";
+        }
 
-    String piloteInfo;
-            if (pilote != null) {
-        piloteInfo = pilote;
-            } else {
-        piloteInfo = "non attribué";
-    }
+        String equipeCabineInfo;
+        if (equipeCabine != null) {
+            equipeCabineInfo = equipeCabine;
+        } else {
+            equipeCabineInfo = "non attribué";
+        }
 
-    String equipeCabineInfo;
-            if (equipeCabine != null) {
-        equipeCabineInfo = equipeCabine;
-            } else {
-        equipeCabineInfo = "non attribué";
+        return "Vol ID: " + numeroVol + ", origine: " + Origine + ", destination: " + destination +
+                ", dateHeureDepart: " + DateHeureDepart + ", dateHeureArrivee: " + DateHeureArrivee +
+                ", etat: " + Etat + ", pilote: " + piloteInfo +
+                ", equipeCabine: " + equipeCabineInfo;
     }
 
     // 计划航班
     public void planifierVol() {
-        this.etat = "Planifié";
+        this.Etat = "Planifié";
         System.out.println(" numeroVol " + numeroVol + " deja planifiée");
     }
 
     // 取消航班
     public void annulerVol() {
-        this.etat = "Annulé";
+        this.Etat = "Annulé";
         this.pilote = null;
         this.equipeCabine = null;
         System.out.println("numeroVol " + numeroVol + " Annulé ");

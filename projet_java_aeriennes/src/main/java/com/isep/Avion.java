@@ -1,3 +1,5 @@
+package com.isep;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +20,8 @@ public class Avion {
         this.volsAssocies = new ArrayList<>();
     }
     // Getter 和 Setter
-    public int getId() {
-        return id;
+    public int getImmatriculation() {
+        return Immatriculation;
     }
 
     public String getModel() {
@@ -29,6 +31,19 @@ public class Avion {
     public int getCapacite() {
         return capacite;
     }
+
+    public void setImmatriculation(int Immatriculation) {
+        this.Immatriculation = Immatriculation;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
+    }
+
     // 设置飞机的可用状态
     public void setDisponibilite(boolean disponible) {
         this.disponible = disponible;
