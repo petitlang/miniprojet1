@@ -15,6 +15,7 @@ public class Reservation{
         this.statut = statut;
         this.volsReserve = new ArrayList<Vol>();
         this.passager = passager;
+        this.vols = new ArrayList<Vol>();
     }
 
     public int getNumeroReservation() {
