@@ -46,8 +46,6 @@ public class Reservation{
             if(reservation.getNumeroReservation() == numeroReservation){
                 reservation.setStatut("confirmée");
                 System.out.println("Reservation confirmée pour le passager : "+ this.passager+"\n" + this.getNumeroReservation());
-            }else{
-                System.out.println("Pas de reservation correspendante pour "+ this.passager);
             }
         }
     }
@@ -57,19 +55,15 @@ public class Reservation{
             if(reservation.getNumeroReservation() == numeroReservation){
                 passager.reservations.remove(reservation);
                 System.out.println("Reservation annulée pour le passager : "+ this.passager+"\n" + this.getNumeroReservation());
-            }else{
-                System.out.println("Pas de reservation correspendante pour "+ this.passager);
             }
         }
     }
 
-    public void modifierReservation(int numeroReservation){
+    public void modifierReservation(int numeroReservation, String dateReservation){
         for(Reservation reservation : passager.reservations){
             if(reservation.getNumeroReservation() == numeroReservation){
-                reservation.setStatut("modifiée");
+                reservation.setDateReservation(dateReservation);
                 System.out.println("Reservation modifiée pour le passager : "+ this.passager+"\n" + this.getNumeroReservation());
-            }else{
-                System.out.println("Pas de reservation correspendante pour "+ this.passager);
             }
         }
     }
@@ -87,10 +81,7 @@ public class Reservation{
             if(reservation.getNumeroReservation() == numeroReservation){
                 System.out.println("Reservation : "+ reservation.getNumeroReservation() + ", Date : "+ reservation.getDateReservation() +
                 ", Statut : "+ reservation.getStatut() + ", Passager : "+ reservation.passager + ", Vols : "+ reservation.volsReserve);
-            }else{
-                System.out.println("Pas de reservation correspendante pour "+ this.passager);
-            }
-            
+            }            
         }
     }
 }
