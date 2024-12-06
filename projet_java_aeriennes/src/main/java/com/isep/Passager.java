@@ -4,12 +4,17 @@ import java.util.ArrayList;
 
 public class Passager extends Personne{
     private String Passeport;
-    protected ArrayList<Reservation> reservations;
+
+    public static ArrayList<Passager> passagers = new ArrayList<Passager>();
+
+    public static ArrayList<Passager> getPassagers() {
+        return passagers;
+    }
 
     public Passager(String Identifiant, String Nom, String Adresse, String Contact, String Passeport) {
         super(Identifiant, Nom, Adresse, Contact);
         this.Passeport = Passeport;
-        this.reservations = new ArrayList<Reservation>();
+        passagers.add(this);
     }
 
     public String getPasseport() {
@@ -21,16 +26,16 @@ public class Passager extends Personne{
     }
 
     public void reserverVol(int numeroVol, int numeroReservation, String date, String statut) {
-        Reservation newReservation = new Reservation(numeroReservation, date, statut, this);
+        Reservation newReservation = new Reservation(numeroReservation, date, statut, getPasseport());
         newReservation.addVol(numeroVol);
-        this.reservations.add(newReservation);
+        Reservation.reservations.add(newReservation);
         System.out.println("Vol " + numeroVol + " réservé avec succès pour " + this.getNom());
     }
 
     public void annulerReservation(int  numeroReservation) {
-        for (Reservation reservation : reservations) {
+        for (Reservation reservation : Reservation.reservations) {
             if (reservation.getNumeroReservation() == numeroReservation) {
-                reservations.remove(reservation);
+                Reservation.reservations.remove(reservation);
                 System.out.println("Reservation " + numeroReservation + " annulée.");
             }else{
                 System.out.println("Aucune réservation trouvée pour le numéro " + numeroReservation);
@@ -40,7 +45,7 @@ public class Passager extends Personne{
     }
 
     public void obtenirReservations() {
-        for (Reservation reservation : reservations) {
+        for (Reservation reservation : Reservation.reservations) {
             System.out.println("Réservation : " + reservation.getNumeroReservation() + ", Date : " + reservation.getDateReservation());
         }
     }

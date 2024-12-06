@@ -84,33 +84,15 @@ public class Vol {
         this.Etat = Etat;
     }
 
-    //Fonctionnalités
-    public void affecterVol(String pilote, String equipeCabine) {
+    public void setPilote(String pilote) {
         this.pilote = pilote;
+    }
+
+    public void setEquipeCabine(String equipeCabine) {
         this.equipeCabine = equipeCabine;
-        System.out.println("Vol " + numeroVol + " , pilote - " + pilote + ", equipeCabine - " + equipeCabine);
     }
 
-    public String obtenirVol() {
-        String piloteInfo;
-        if (pilote != null) {
-            piloteInfo = pilote;
-        } else {
-            piloteInfo = "non attribué";
-        }
-
-        String equipeCabineInfo;
-        if (equipeCabine != null) {
-            equipeCabineInfo = equipeCabine;
-        } else {
-            equipeCabineInfo = "non attribué";
-        }
-
-        return "Vol ID: " + numeroVol + ", origine: " + Origine + ", destination: " + destination +
-                ", dateHeureDepart: " + DateHeureDepart + ", dateHeureArrivee: " + DateHeureArrivee +
-                ", etat: " + Etat + ", pilote: " + piloteInfo +
-                ", equipeCabine: " + equipeCabineInfo;
-    }
+    //Fonctionnalités
 
     // 计划航班
     public void planifierVol() {
@@ -126,4 +108,32 @@ public class Vol {
         System.out.println("numeroVol " + numeroVol + " Annulé ");
     }
 
+    public void modifierVol(String Origine, String destination, Date DateHeureDepart, Date DateHeureArrivee) {
+        this.Origine = Origine;
+        this.destination = destination;
+        this.DateHeureDepart = DateHeureDepart;
+        this.DateHeureArrivee = DateHeureArrivee;
+        System.out.println("numeroVol " + numeroVol + " modifié");
+    }
+
+    public void ListingPassager() {
+        for (Reservation reservation : Reservation.getReservations()) {
+            for (Vol vol : reservation.getVolsReserve()) {
+                if (vol.getNumeroVol() == this.numeroVol) {
+                    for (Passager passager  : Passager.getPassagers()) {
+                        if (passager.getPasseport().equals(reservation.getPasseport())) {
+                            System.out.println("Passager : " + passager.getNom());
+                        }   
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Vol [numeroVol=" + numeroVol + ", Origine=" + Origine + ", destination=" + destination + ", DateHeureDepart="
+                + DateHeureDepart + ", DateHeureArrivee=" + DateHeureArrivee + ", Etat=" + Etat + ", pilote=" + pilote
+                + ", equipeCabine=" + equipeCabine + "]";
+    }
 }

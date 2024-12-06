@@ -7,18 +7,29 @@ public class Reservation{
     private String dateReservation;
     private String statut;
     protected ArrayList<Vol> volsReserve;
-    protected Passager passager;
+    private String Passeport;
 
-    public Reservation(int numeroReservation, String dateReservation, String statut, Passager passager) {
+    public static ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+
+    public static ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public Reservation(int numeroReservation, String dateReservation, String statut, String Passeport) {
         this.numeroReservation = numeroReservation;
         this.dateReservation = dateReservation;
         this.statut = statut;
         this.volsReserve = new ArrayList<Vol>();
-        this.passager = passager;
+        this.Passeport = Passeport;
+        reservations.add(this);
     }
 
     public int getNumeroReservation() {
         return numeroReservation;
+    }
+
+    public String getPasseport() {
+        return Passeport;
     }
 
     public void setNumeroReservation(int numeroReservation) {
@@ -37,33 +48,37 @@ public class Reservation{
         return statut;
     }
 
+    public ArrayList<Vol> getVolsReserve() {
+        return volsReserve;
+    }
+
     public void setStatut(String statut) {
         this.statut = statut;
     }
 
     public void confirmerReservation(int numeroReservation){
-        for(Reservation reservation : passager.reservations){
+        for(Reservation reservation : reservations){
             if(reservation.getNumeroReservation() == numeroReservation){
                 reservation.setStatut("confirmée");
-                System.out.println("Reservation confirmée pour le passager : "+ this.passager+"\n" + this.getNumeroReservation());
+                System.out.println("Reservation confirmée pour le passager : "+ reservation.getPasseport()+"\n" + reservation.getNumeroReservation());
             }
         }
     }
 
     public void annulerReservation(int numeroReservation){
-        for(Reservation reservation : passager.reservations){
+        for(Reservation reservation : reservations){
             if(reservation.getNumeroReservation() == numeroReservation){
-                passager.reservations.remove(reservation);
-                System.out.println("Reservation annulée pour le passager : "+ this.passager+"\n" + this.getNumeroReservation());
+                reservations.remove(reservation);
+                System.out.println("Reservation annulée pour le passager : "+ reservation.getPasseport()+"\n" + reservation.getNumeroReservation());
             }
         }
     }
 
     public void modifierReservation(int numeroReservation, String dateReservation){
-        for(Reservation reservation : passager.reservations){
+        for(Reservation reservation : reservations){
             if(reservation.getNumeroReservation() == numeroReservation){
                 reservation.setDateReservation(dateReservation);
-                System.out.println("Reservation modifiée pour le passager : "+ this.passager+"\n" + this.getNumeroReservation());
+                System.out.println("Reservation modifiée pour le passager : "+ reservation.getPasseport()+"\n" + reservation.getNumeroReservation());
             }
         }
     }
@@ -77,10 +92,10 @@ public class Reservation{
     }
 
     public void obtenirReservations(int numeroReservation){
-        for(Reservation reservation : passager.reservations){
+        for(Reservation reservation : reservations){
             if(reservation.getNumeroReservation() == numeroReservation){
                 System.out.println("Reservation : "+ reservation.getNumeroReservation() + ", Date : "+ reservation.getDateReservation() +
-                ", Statut : "+ reservation.getStatut() + ", Passager : "+ reservation.passager + ", Vols : "+ reservation.volsReserve);
+                ", Statut : "+ reservation.getStatut() + ", Passager : "+ reservation.getPasseport() + ", Vols : "+ reservation.volsReserve);
             }            
         }
     }

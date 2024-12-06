@@ -1,11 +1,20 @@
 package com.isep;
 
+import java.util.ArrayList;
+
 public class PersonnelCabine extends Employe{
     private String qualification;
+
+    public static ArrayList<PersonnelCabine> personnelCabines = new ArrayList<PersonnelCabine>();
+
+    public static ArrayList<PersonnelCabine> getPersonnelCabines() {
+        return personnelCabines;
+    }
 
     public PersonnelCabine(String Identifiant, String Nom, String Adresse, String Contact, String NumeroEmploye, String DataEmbauche, String qualification) {
         super(Identifiant, Nom, Adresse, Contact, NumeroEmploye, DataEmbauche);
         this.qualification = qualification;
+        personnelCabines.add(this);
     }
 
     public String getQualification() {
@@ -16,12 +25,21 @@ public class PersonnelCabine extends Employe{
         this.qualification = qualification;
     }
 
-    public void affecterVol(){
-        System.out.println("Vol affecté au personnel de cabine : " + this.getNom());
+    public void affecterVol(int numeroVol){
+        for (Vol vol : Vol.getVols()) {
+            if (vol.getNumeroVol() == numeroVol) {
+                vol.setEquipeCabine(this.getNom());
+                System.out.println("Vol " + numeroVol + " affecté à " + this.getNom());
+            }
+        }
     }
 
-    public void obtenirVol(){
-        System.out.println("Vol obtenu par le personnel de cabine : " + this.getNom());
+    public void obtenirVol(int numeroVol){
+        for (Vol vol : Vol.getVols()) {
+            if (vol.getNumeroVol() == numeroVol) {
+                System.out.println(vol); 
+            }
+        }
     }
     
 }
