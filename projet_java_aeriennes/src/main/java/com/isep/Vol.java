@@ -1,10 +1,15 @@
 package com.isep;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Vol {
-    private int numeroVol;         // 航班编号
+    private String numeroVol;         // 航班编号
     private String Origine;        // 出发地
     private String destination;    // 目的地
     private Date DateHeureDepart;  // 航班日期出发日期和时间
@@ -20,7 +25,7 @@ public class Vol {
     }
 
     // 构造函数
-    public Vol(int numeroVol, String Origine, String destination, Date DateHeureDepart, Date DateHeureArrivee, String Etat) {
+    public Vol(String numeroVol, String Origine, String destination, Date DateHeureDepart, Date DateHeureArrivee, String Etat) {
         this.numeroVol = numeroVol;
         this.Origine = Origine;
         this.destination = destination;
@@ -33,7 +38,7 @@ public class Vol {
     }
 
     // Getter 和 Setter
-    public int getNumeroVol() {
+    public String getNumeroVol() {
         return numeroVol;
     }
     public String getOrigine() {
@@ -60,7 +65,7 @@ public class Vol {
         return equipeCabine;
     }
 
-    public void setNumeroVol(int numeroVol) {
+    public void setNumeroVol(String numeroVol) {
         this.numeroVol = numeroVol;
     }
 
@@ -135,5 +140,40 @@ public class Vol {
         return "Vol [numeroVol=" + numeroVol + ", Origine=" + Origine + ", destination=" + destination + ", DateHeureDepart="
                 + DateHeureDepart + ", DateHeureArrivee=" + DateHeureArrivee + ", Etat=" + Etat + ", pilote=" + pilote
                 + ", equipeCabine=" + equipeCabine + "]";
+    }
+
+    public static ArrayList<Vol> importVols(String pathfileVols) {
+        ArrayList<Vol> vols = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(pathfileVols))) {
+            String line;
+            reader.readLine(); // Sauter la ligne d'en-tête
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+
+                if (fields.length == 6) {
+                    try {
+                        String numeroVol = fields[0].trim();
+                        String origine = fields[1].trim();
+                        String destination = fields[2].trim();
+                        Date dateHeureDepart = sdf.parse(fields[3].trim());
+                        Date dateHeureArrivee = sdf.parse(fields[4].trim());
+                        String Etat = fields[5].trim();
+
+                        Vol vol = new Vol(numeroVol, origine, destination, dateHeureDepart, dateHeureArrivee, Etat);
+                        vols.add(vol);
+                    } catch (NumberFormatException | ParseException e) {
+                        System.err.println("Ligne de résolution des erreurs : " + line + ", Erreur :" + e.getMessage());
+                    }
+                } else {
+                    System.err.println("Erreur de formatage CSV, saut de lignes :" + line);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur de lecture du fichier :" + e.getMessage());
+        }
+
+        return vols;
     }
 }

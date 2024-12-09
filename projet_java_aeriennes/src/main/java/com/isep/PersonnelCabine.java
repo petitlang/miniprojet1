@@ -25,7 +25,7 @@ public class PersonnelCabine extends Employe{
         this.qualification = qualification;
     }
 
-    public void affecterVol(int numeroVol){
+    public void affecterVol(String numeroVol){
         for (Vol vol : Vol.getVols()) {
             if (vol.getNumeroVol() == numeroVol) {
                 vol.setEquipeCabine(this.getNom());
@@ -34,7 +34,7 @@ public class PersonnelCabine extends Employe{
         }
     }
 
-    public void obtenirVol(int numeroVol){
+    public void obtenirVol(String numeroVol){
         for (Vol vol : Vol.getVols()) {
             if (vol.getNumeroVol() == numeroVol) {
                 System.out.println(vol); 

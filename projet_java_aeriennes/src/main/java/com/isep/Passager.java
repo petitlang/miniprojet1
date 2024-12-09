@@ -25,7 +25,7 @@ public class Passager extends Personne{
         this.Passeport = Passeport;
     }
 
-    public void reserverVol(int numeroVol, int numeroReservation, String date, String statut) {
+    public void reserverVol(String numeroVol, int numeroReservation, String date, String statut) {
         Reservation newReservation = new Reservation(numeroReservation, date, statut, getPasseport());
         newReservation.addVol(numeroVol);
         Reservation.reservations.add(newReservation);

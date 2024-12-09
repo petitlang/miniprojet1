@@ -83,7 +83,7 @@ public class Reservation{
         }
     }
     
-    public void addVol(int numeroVol){
+    public void addVol(String numeroVol){
         for(Vol vol : Vol.getVols()){
             if(vol.getNumeroVol() == numeroVol){
                 volsReserve.add(vol);

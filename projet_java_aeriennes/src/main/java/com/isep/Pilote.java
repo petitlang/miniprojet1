@@ -37,7 +37,7 @@ public class Pilote extends Employe{
         this.heuresDeVols = heuresDeVols;
     }
 
-    public void affecterVol(int numeroVol){
+    public void affecterVol(String numeroVol){
         for (Vol vol : Vol.getVols()) {
             if (vol.getNumeroVol() == numeroVol) {
                 vol.setPilote(this.getNom());
@@ -46,7 +46,7 @@ public class Pilote extends Employe{
         }
     }
 
-    public void obtenirVol(int numeroVol){
+    public void obtenirVol(String numeroVol){
         for (Vol vol : Vol.getVols()) {
             if (vol.getNumeroVol() == numeroVol) {
                 System.out.println(vol);
