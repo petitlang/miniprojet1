@@ -11,7 +11,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class FlightSearch {
-    private static final String API_URL = "https://test.api.amadeus.com/v2/shopping/flight-offers";
+    public static String API_URL = "https://test.api.amadeus.com/v2/shopping/flight-offers";
 
     public static void main(String[] args) throws IOException {
         String accessToken = AccessTokenFetcher.getAccessToken();
