@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Test set: com.isep.AccessTokenFetcherTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.518 s <<< FAILURE! -- in com.isep.AccessTokenFetcherTest
+com.isep.AccessTokenFetcherTest.testGetAccessTokenFailure -- Time elapsed: 0.021 s <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problems: 
+	The method createClient() of type new AccessTokenFetcher(){} must override or implement a supertype method
+	The method assertThrows(Class<T>, Executable) in the type Assertions is not applicable for the arguments (Class<IOException>, fetcher::getAccessToken)
+	The method getAccessToken() from the type AccessTokenFetcher should be accessed in a static way 
+
+	at com.isep.AccessTokenFetcherTest.testGetAccessTokenFailure(AccessTokenFetcherTest.java:64)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.isep.AccessTokenFetcherTest.testGetAccessTokenSuccess -- Time elapsed: 0.468 s <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot mock/spy class okhttp3.Response
+Mockito cannot mock/spy because :
+ - final class
+	at com.isep.AccessTokenFetcherTest.testGetAccessTokenSuccess(AccessTokenFetcherTest.java:20)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
